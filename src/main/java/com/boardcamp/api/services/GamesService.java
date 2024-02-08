@@ -1,5 +1,7 @@
 package com.boardcamp.api.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.boardcamp.api.dtos.GamesDTO;
@@ -21,5 +23,9 @@ public class GamesService {
 
     public boolean existsByName(String name) {
         return gamesRepository.existsByName(name);
+    }
+
+    public List<GamesModel> findAll() {
+        return gamesRepository.findAll();
     }
 }

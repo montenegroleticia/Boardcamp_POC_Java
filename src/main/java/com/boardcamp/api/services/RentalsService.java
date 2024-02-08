@@ -1,5 +1,6 @@
 package com.boardcamp.api.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -34,5 +35,9 @@ public class RentalsService {
 
         RentalsModel rental = new RentalsModel(dto, game.get(), customer.get());
         return Optional.of(rentalsRepository.save(rental));
+    }
+
+    public List<RentalsModel> findAll() {
+        return rentalsRepository.findAll();
     }
 }
