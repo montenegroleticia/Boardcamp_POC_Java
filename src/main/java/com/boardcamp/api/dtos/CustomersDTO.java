@@ -1,15 +1,18 @@
 package com.boardcamp.api.dtos;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class CustomersDTO {
-    @NotBlank
+    @NotNull
     private String name;
 
-    @NotBlank
-    @Size(max = 11, min = 11)
+    @NotNull
+    @Min(value = 10000000000L, message = "CPF must be at least 11 digits")
+    @Max(value = 99999999999L, message = "CPF must be at most 11 digits")
     private Long cpf;
+
 }

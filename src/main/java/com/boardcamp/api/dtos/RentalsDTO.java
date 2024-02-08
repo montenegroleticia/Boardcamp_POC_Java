@@ -1,20 +1,19 @@
 package com.boardcamp.api.dtos;
 
-import jakarta.validation.constraints.NotBlank;
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class RentalsDTO {
-    @NotBlank
     @NotNull
     private Long customerId;
 
-    @NotBlank
     @NotNull
     private Long gameId;
 
-    private String rentDate;
+    private LocalDate rentDate;
 
     private Integer daysRented;
 
@@ -23,8 +22,4 @@ public class RentalsDTO {
     private Long originalPrice;
 
     private Integer delayFee;
-
-    private String[] customer;
-
-    private String[] game;
 }
