@@ -33,7 +33,7 @@ public class RentalsModel {
         this.delayFee = 0;
         this.game = game;
         this.originalPrice = calculateOriginalPrice(dto.getDaysRented(), game.getPricePerDay());
-        this.rentDate = LocalDate.now().toString();
+        this.rentDate = LocalDate.now();
         this.returnDate = null;
     }
 
@@ -42,19 +42,19 @@ public class RentalsModel {
     private Long id;
 
     @Column(nullable = false)
-    private String rentDate;
+    private LocalDate rentDate;
 
     @Column(nullable = false)
     private Integer daysRented;
 
     @Column(nullable = true)
-    private String returnDate;
+    private LocalDate returnDate;
 
     @Column(nullable = false)
     private Float originalPrice;
 
     @Column(nullable = false)
-    private Integer delayFee;
+    private Float delayFee;
 
     @ManyToOne
     @JoinColumn(name = "customerId")

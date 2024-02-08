@@ -1,10 +1,12 @@
 package com.boardcamp.api.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.boardcamp.api.Exception.RentalNotFoundException;
 import com.boardcamp.api.dtos.RentalsDTO;
 import com.boardcamp.api.models.CustomersModel;
 import com.boardcamp.api.models.GamesModel;
@@ -39,5 +41,28 @@ public class RentalsService {
 
     public List<RentalsModel> findAll() {
         return rentalsRepository.findAll();
+    }
+
+    public RentalsModel findById(Long id) {
+        return rentalsRepository.findById(id).orElseThrow(
+                () -> new RentalNotFoundException("Rental not found by this id!"));
+    }
+
+    public RentalsModel finish(Long id) {
+        RentalsModel rental = this.findById(id);
+
+        if (rental.getReturnDate() != null) {
+            return null;
+        }
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate returnDate = rental.getRentDate().plusDays(rental.getDaysRented());
+        int delayDays = Math.max(0, currentDate.compareTo(returnDate));
+        Float delayFee = delayDays * rental.getGame().getPricePerDay();
+
+        rental.setReturnDate(currentDate);
+        rental.setDelayFee(delayFee);
+
+        return rentalsRepository.save(rental);
     }
 }
