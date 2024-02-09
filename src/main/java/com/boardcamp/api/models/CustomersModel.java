@@ -32,5 +32,5 @@ public class CustomersModel {
     private String name;
 
     @Column(nullable = false, unique = true)
-    private Long cpf;
+    private String cpf;
 }

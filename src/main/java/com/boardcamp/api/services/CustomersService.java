@@ -22,7 +22,7 @@ public class CustomersService {
         return customersRepository.save(customer);
     }
 
-    public boolean existsByCpf(Long cpf) {
+    public boolean existsByCpf(String cpf) {
         return customersRepository.existsByCpf(cpf);
     }
 
