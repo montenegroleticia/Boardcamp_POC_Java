@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "rentals")
 public class RentalsModel {
     
-    public Float calculateOriginalPrice(Integer daysRented, Float pricePerDay) {
+    public Integer calculateOriginalPrice(Integer daysRented, Integer pricePerDay) {
         return daysRented * pricePerDay;
     }
 
@@ -51,10 +51,10 @@ public class RentalsModel {
     private LocalDate returnDate;
 
     @Column(nullable = false)
-    private Float originalPrice;
+    private Integer originalPrice;
 
     @Column(nullable = false)
-    private Float delayFee;
+    private Integer delayFee;
 
     @ManyToOne
     @JoinColumn(name = "customerId")

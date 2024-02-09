@@ -40,5 +40,5 @@ public class GamesModel {
     private Integer stockTotal;
 
     @Column(nullable = false)
-    private Float pricePerDay;
+    private Integer pricePerDay;
 }

@@ -58,7 +58,7 @@ public class RentalsService {
         LocalDate currentDate = LocalDate.now();
         LocalDate returnDate = rental.getRentDate().plusDays(rental.getDaysRented());
         int delayDays = Math.max(0, currentDate.compareTo(returnDate));
-        Float delayFee = delayDays * rental.getGame().getPricePerDay();
+        Integer delayFee = delayDays * rental.getGame().getPricePerDay();
 
         rental.setReturnDate(currentDate);
         rental.setDelayFee(delayFee);

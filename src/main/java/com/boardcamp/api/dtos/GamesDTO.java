@@ -13,5 +13,5 @@ public class GamesDTO {
 
     private Integer stockTotal;
 
-    private Float pricePerDay;
+    private Integer pricePerDay;
 }
