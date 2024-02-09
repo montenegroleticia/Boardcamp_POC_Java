@@ -7,6 +7,12 @@ import lombok.Data;
 
 @Data
 public class CustomersDTO {
+
+    public CustomersDTO(String name, String cpf) {
+        this.name = name;
+        this.cpf = cpf;
+    }
+
     @NotNull
     @NotBlank
     private String name;

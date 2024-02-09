@@ -7,6 +7,13 @@ import lombok.Data;
 
 @Data
 public class RentalsDTO {
+
+    public RentalsDTO(int customerId, int gameId, int daysRented) {
+        this.customerId = (long) customerId;
+        this.gameId = (long) gameId;
+        this.daysRented = daysRented;
+    }
+
     @NotNull
     private Long customerId;
 

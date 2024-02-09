@@ -6,6 +6,13 @@ import lombok.Data;
 @Data
 public class GamesDTO {
 
+    public GamesDTO(String name, String image, Integer stockTotal, Integer pricePerDay) {
+        this.name = name;
+        this.image = image;
+        this.stockTotal = stockTotal;
+        this.pricePerDay = pricePerDay;
+    }
+
     @NotBlank
     private String name;
 
