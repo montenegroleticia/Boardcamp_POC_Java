@@ -1,9 +1,11 @@
-package com.boardcamp.api;
+package com.boardcamp.api.Unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -46,14 +48,18 @@ class RentalsUnitTests {
 
         RentalsModel newRental = new RentalsModel(rentalsDTO, game, customer);
 
+        gamesRepository.save(game);
+        customersRepository.save(customer);
+
         doReturn(false).when(rentalsRepository).existsById(any());
-        doReturn(game).when(gamesRepository).findById(1L);
-        doReturn(customer).when(customersRepository).findById(1L);
+        doReturn(Optional.of(game)).when(gamesRepository).findById(1L);
+        doReturn(Optional.of(customer)).when(customersRepository).findById(1L);
         doReturn(newRental).when(rentalsRepository).save(any());
 
-        RentalsModel result = rentalsService.save(rentalsDTO);
+        Optional<RentalsModel> result = rentalsService.save(rentalsDTO);
 
-        assertNotNull(result);
-        assertEquals(newRental, result);
+        assertNotNull(result.orElse(null));
+        assertEquals(newRental, result.orElse(null));
     }
+
 }

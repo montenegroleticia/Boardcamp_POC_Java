@@ -14,6 +14,12 @@ public class RentalsDTO {
         this.daysRented = daysRented;
     }
 
+    public RentalsDTO(long customerId, long gameId, int daysRented) {
+        this.customerId = customerId;
+        this.gameId = gameId;
+        this.daysRented = daysRented;
+    }
+
     @NotNull
     private Long customerId;
 
