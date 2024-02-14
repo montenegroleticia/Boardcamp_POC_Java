@@ -67,7 +67,7 @@ Lembre-se de configurar corretamente o ambiente Java e Maven para executar o pro
 
 - Spring Boot
 - Java
-- Banco de Dados (H2 ou outro de sua escolha)
+- Banco de Dados
 
 ## Contribuições
 
