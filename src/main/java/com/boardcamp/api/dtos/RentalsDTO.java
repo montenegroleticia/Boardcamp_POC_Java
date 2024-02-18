@@ -3,6 +3,7 @@ package com.boardcamp.api.dtos;
 import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
@@ -30,6 +31,8 @@ public class RentalsDTO {
 
     private LocalDate rentDate;
 
+    @NotNull
+    @Positive
     private Integer daysRented;
 
     private String returnDate;

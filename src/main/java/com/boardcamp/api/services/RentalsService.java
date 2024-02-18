@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.boardcamp.api.Exception.RentalNotFoundException;
+import com.boardcamp.api.Exception.RentalUnprocessableEntityException;
 import com.boardcamp.api.dtos.RentalsDTO;
 import com.boardcamp.api.models.CustomersModel;
 import com.boardcamp.api.models.GamesModel;
@@ -52,7 +53,7 @@ public class RentalsService {
         RentalsModel rental = this.findById(id);
 
         if (rental.getReturnDate() != null) {
-            return null;
+            throw new RentalUnprocessableEntityException("This rental is already finished");
         }
 
         LocalDate currentDate = LocalDate.now();
