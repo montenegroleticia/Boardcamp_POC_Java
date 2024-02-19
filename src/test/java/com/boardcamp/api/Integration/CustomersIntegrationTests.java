@@ -36,6 +36,20 @@ class CustomersIntegrationTests {
     }
 
     @Test
+    void givenRepeteadCPF_whenCreatingCustomer_thenThrowsConflictError() {
+        CustomersDTO customerDTO = new CustomersDTO("João Alfredo", "01234567890");
+  
+        CustomersModel customer = new CustomersModel(customerDTO);
+        customersRepository.save(customer);
+
+        HttpEntity<CustomersDTO> body = new HttpEntity<>(customerDTO);
+
+        ResponseEntity<String> response = restTemplate.exchange("/customers", HttpMethod.POST, body, String.class);
+
+        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+    }
+
+    @Test
     void givenValidCustomer_whenCreatingCustomer_thenCreatesCustomer() {
         CustomersDTO customerDTO = new CustomersDTO("João Alfredo", "01234567890");
 

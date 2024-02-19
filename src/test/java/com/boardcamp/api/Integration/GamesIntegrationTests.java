@@ -36,6 +36,20 @@ class GamesIntegrationTests {
     }
 
     @Test
+    void givenRepeteadName_whenCreatingGame_thenThrowsConflictError() {
+        GamesDTO gameDTO = new GamesDTO("Banco Imobiliário", "http://www.imagem.com.br/banco_imobiliario.jpg", 3, 1000);
+
+        GamesModel game = new GamesModel(gameDTO);
+        gamesRepository.save(game);
+
+        HttpEntity<GamesDTO> body = new HttpEntity<>(gameDTO);
+
+        ResponseEntity<String> response = restTemplate.exchange("/games", HttpMethod.POST, body, String.class);
+
+        assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+    }
+
+    @Test
     void givenValidGame_whenCreatingGame_thenCreatesGame() {
         GamesDTO gameDTO = new GamesDTO("Banco Imobiliário", "http://www.imagem.com.br/banco_imobiliario.jpg", 3, 1000);
 
